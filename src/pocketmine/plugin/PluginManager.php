@@ -224,7 +224,7 @@ class PluginManager{
 								continue;
 							}
 
-							$compatible = false;
+							/*$compatible = false;
 							//Check multiple dependencies
 							foreach($description->getCompatibleApis() as $version){
 								//Format: majorVersion.minorVersion.patch (3.0.0)
@@ -256,7 +256,7 @@ class PluginManager{
 							if($compatible === false){
 								$this->server->getLogger()->error($this->server->getLanguage()->translateString("pocketmine.plugin.loadError", [$name, "%pocketmine.plugin.incompatibleAPI"]));
 								continue;
-							}
+							}*/
 
 							$plugins[$name] = $file;
 
