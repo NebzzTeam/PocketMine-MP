@@ -30,5 +30,5 @@ interface PluginIdentifiableCommand{
 	/**
 	 * @return Plugin
 	 */
-	public function getPlugin() : Plugin;
+	public function getPlugin();
 }
