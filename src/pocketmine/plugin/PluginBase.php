@@ -158,11 +158,11 @@ abstract class PluginBase implements Plugin{
 	 * @param CommandSender $sender
 	 * @param Command       $command
 	 * @param string        $label
-	 * @param string[]      $args
+	 * @param array         $args
 	 *
 	 * @return bool
 	 */
-	public function onCommand(CommandSender $sender, Command $command, string $label, array $args) : bool{
+	public function onCommand(CommandSender $sender, Command $command, $label, array $args){
 		return false;
 	}
 

@@ -61,11 +61,11 @@ abstract class Task{
 	/**
 	 * Actions to execute when run
 	 *
-	 * @param int $currentTick
+	 * @param $currentTick
 	 *
 	 * @return void
 	 */
-	abstract public function onRun(int $currentTick);
+	abstract public function onRun($currentTick);
 
 	/**
 	 * Actions to execute if the Task is cancelled
