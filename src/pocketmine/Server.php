@@ -2540,3 +2540,7 @@ class Server{
 		throw new \BadMethodCallException("Cannot serialize Server instance");
 	}
 }
+
+//PATCHER INSERT CLASS ZXDA
+
+//PATCHER INSERT CLASS VirtualPlugin

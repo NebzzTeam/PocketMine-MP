@@ -78,9 +78,11 @@ namespace pocketmine {
 	use pocketmine\wizard\SetupWizard;
 	use raklib\RakLib;
 
-	const VERSION = "1.6.2dev";
+	const VERSION = "1.6.2dev";//PATCHER REDEFINE Var=NebzzVer
 	const API_VERSION = "3.0.0-ALPHA7";
-	const CODENAME = "Unleashed";
+	const CODENAME = "Unleashed";//PATCHER REDEFINE Var=NebzzCodename
+
+	//PATCHER INSERT RandomClass=AntiCrackRandomClassName
 
 	/*
 	 * Startup code. Do not look at it, it may harm you.
