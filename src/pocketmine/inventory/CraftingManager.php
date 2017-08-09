@@ -160,14 +160,14 @@ class CraftingManager{
 	/**
 	 * @return Recipe[]
 	 */
-	public function getRecipes() : array{
+	public function getRecipes(){
 		return $this->recipes;
 	}
 
 	/**
 	 * @return FurnaceRecipe[]
 	 */
-	public function getFurnaceRecipes() : array{
+	public function getFurnaceRecipes(){
 		return $this->furnaceRecipes;
 	}
 
@@ -238,7 +238,7 @@ class CraftingManager{
 	 * @param ShapelessRecipe $recipe
 	 * @return bool
 	 */
-	public function matchRecipe(ShapelessRecipe $recipe) : bool{
+	public function matchRecipe(ShapelessRecipe $recipe){
 		if(!isset($this->recipeLookup[$idx = $recipe->getResult()->getId() . ":" . $recipe->getResult()->getDamage()])){
 			return false;
 		}

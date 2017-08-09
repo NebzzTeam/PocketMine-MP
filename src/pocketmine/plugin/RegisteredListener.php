@@ -69,21 +69,21 @@ class RegisteredListener{
 	/**
 	 * @return Listener
 	 */
-	public function getListener() : Listener{
+	public function getListener(){
 		return $this->listener;
 	}
 
 	/**
 	 * @return Plugin
 	 */
-	public function getPlugin() : Plugin{
+	public function getPlugin(){
 		return $this->plugin;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getPriority() : int{
+	public function getPriority(){
 		return $this->priority;
 	}
 
@@ -106,7 +106,7 @@ class RegisteredListener{
 	/**
 	 * @return bool
 	 */
-	public function isIgnoringCancelled() : bool{
+	public function isIgnoringCancelled(){
 		return $this->ignoreCancelled === true;
 	}
 }

@@ -26,6 +26,7 @@ namespace pocketmine\event\player;
 use pocketmine\entity\Human;
 use pocketmine\event\Cancellable;
 use pocketmine\event\entity\EntityEvent;
+use pocketmine\Player;
 
 class PlayerExhaustEvent extends EntityEvent implements Cancellable{
 	public static $handlerList = null;

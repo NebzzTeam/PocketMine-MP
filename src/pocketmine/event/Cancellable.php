@@ -31,7 +31,7 @@ interface Cancellable{
 	/**
 	 * @return bool
 	 */
-	public function isCancelled() : bool;
+	public function isCancelled();
 
 	/**
 	 * @param bool $value

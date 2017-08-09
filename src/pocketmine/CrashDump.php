@@ -38,9 +38,7 @@ class CrashDump{
 	private $fp;
 	private $time;
 	private $data = [];
-	/** @var string */
-	private $encodedData = "";
-	/** @var string */
+	private $encodedData = null;
 	private $path;
 
 	public function __construct(Server $server){
@@ -66,7 +64,7 @@ class CrashDump{
 		$this->encodeData();
 	}
 
-	public function getPath() : string{
+	public function getPath(){
 		return $this->path;
 	}
 
@@ -74,7 +72,7 @@ class CrashDump{
 		return $this->encodedData;
 	}
 
-	public function getData() : array{
+	public function getData(){
 		return $this->data;
 	}
 

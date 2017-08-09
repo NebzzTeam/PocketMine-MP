@@ -31,6 +31,7 @@ use pocketmine\permission\PermissionAttachmentInfo;
 use pocketmine\plugin\Plugin;
 use pocketmine\Server;
 use pocketmine\utils\MainLogger;
+use pocketmine\utils\Terminal;
 
 class ConsoleCommandSender implements CommandSender{
 
@@ -48,7 +49,7 @@ class ConsoleCommandSender implements CommandSender{
 	 *
 	 * @return bool
 	 */
-	public function isPermissionSet($name) : bool{
+	public function isPermissionSet($name){
 		return $this->perm->isPermissionSet($name);
 	}
 
@@ -57,7 +58,7 @@ class ConsoleCommandSender implements CommandSender{
 	 *
 	 * @return bool
 	 */
-	public function hasPermission($name) : bool{
+	public function hasPermission($name){
 		return $this->perm->hasPermission($name);
 	}
 
@@ -88,14 +89,14 @@ class ConsoleCommandSender implements CommandSender{
 	/**
 	 * @return PermissionAttachmentInfo[]
 	 */
-	public function getEffectivePermissions() : array{
+	public function getEffectivePermissions(){
 		return $this->perm->getEffectivePermissions();
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function isPlayer() : bool{
+	public function isPlayer(){
 		return false;
 	}
 
@@ -131,14 +132,14 @@ class ConsoleCommandSender implements CommandSender{
 	/**
 	 * @return bool
 	 */
-	public function isOp() : bool{
+	public function isOp(){
 		return true;
 	}
 
 	/**
 	 * @param bool $value
 	 */
-	public function setOp(bool $value){
+	public function setOp($value){
 
 	}
 

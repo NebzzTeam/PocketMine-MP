@@ -99,7 +99,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 	/**
 	 * @return string
 	 */
-	public function getRawUniqueId() : string{
+	public function getRawUniqueId(){
 		return $this->rawUUID;
 	}
 
@@ -431,7 +431,7 @@ class Human extends Creature implements ProjectileSource, InventoryHolder{
 		return $this->getNameTag();
 	}
 
-	public function getDrops() : array{
+	public function getDrops(){
 		return $this->inventory !== null ? array_values($this->inventory->getContents()) : [];
 	}
 

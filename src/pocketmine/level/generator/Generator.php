@@ -29,13 +29,12 @@ namespace pocketmine\level\generator;
 use pocketmine\level\ChunkManager;
 use pocketmine\level\generator\noise\Noise;
 use pocketmine\level\generator\normal\Normal;
-use pocketmine\math\Vector3;
 use pocketmine\utils\Random;
 
 abstract class Generator{
 	private static $list = [];
 
-	public static function addGenerator($object, $name) : bool{
+	public static function addGenerator($object, $name){
 		if(is_subclass_of($object, Generator::class) and !isset(Generator::$list[$name = strtolower($name)])){
 			Generator::$list[$name] = $object;
 
@@ -48,7 +47,7 @@ abstract class Generator{
 	/**
 	 * @return string[]
 	 */
-	public static function getGeneratorList() : array{
+	public static function getGeneratorList(){
 		return array_keys(Generator::$list);
 	}
 
@@ -77,15 +76,17 @@ abstract class Generator{
 
 	/**
 	 * @param Noise $noise
-	 * @param int $xSize
-	 * @param int $samplingRate
-	 * @param int $x
-	 * @param int $y
-	 * @param int $z
+	 * @param int   $xSize
+	 * @param int   $samplingRate
+	 * @param int   $x
+	 * @param int   $y
+	 * @param int   $z
 	 *
 	 * @return \SplFixedArray
+	 *
+	 * @throws \InvalidArgumentCountException
 	 */
-	public static function getFastNoise1D(Noise $noise, int $xSize, int $samplingRate, int $x, int $y, int $z) : \SplFixedArray{
+	public static function getFastNoise1D(Noise $noise, $xSize, $samplingRate, $x, $y, $z){
 		if($samplingRate === 0){
 			throw new \InvalidArgumentException("samplingRate cannot be 0");
 		}
@@ -111,16 +112,19 @@ abstract class Generator{
 
 	/**
 	 * @param Noise $noise
-	 * @param int $xSize
-	 * @param int $zSize
-	 * @param int $samplingRate
-	 * @param int $x
-	 * @param int $y
-	 * @param int $z
+	 * @param int   $xSize
+	 * @param int   $zSize
+	 * @param int   $samplingRate
+	 * @param int   $x
+	 * @param int   $y
+	 * @param int   $z
 	 *
 	 * @return \SplFixedArray
+	 *
+	 * @throws \InvalidArgumentException
+	 * @throws \InvalidArgumentCountException
 	 */
-	public static function getFastNoise2D(Noise $noise, int $xSize, int $zSize, int $samplingRate, int $x, int $y, int $z) : \SplFixedArray{
+	public static function getFastNoise2D(Noise $noise, $xSize, $zSize, $samplingRate, $x, $y, $z){
 		assert($samplingRate !== 0, new \InvalidArgumentException("samplingRate cannot be 0"));
 
 		assert($xSize % $samplingRate === 0, new \InvalidArgumentCountException("xSize % samplingRate must return 0"));
@@ -158,19 +162,22 @@ abstract class Generator{
 
 	/**
 	 * @param Noise $noise
-	 * @param int $xSize
-	 * @param int $ySize
-	 * @param int $zSize
-	 * @param int $xSamplingRate
-	 * @param int $ySamplingRate
-	 * @param int $zSamplingRate
-	 * @param int $x
-	 * @param int $y
-	 * @param int $z
+	 * @param int   $xSize
+	 * @param int   $ySize
+	 * @param int   $zSize
+	 * @param int   $xSamplingRate
+	 * @param int   $ySamplingRate
+	 * @param int   $zSamplingRate
+	 * @param int   $x
+	 * @param int   $y
+	 * @param int   $z
 	 *
-	 * @return array
+	 * @return \SplFixedArray
+	 *
+	 * @throws \InvalidArgumentException
+	 * @throws \InvalidArgumentCountException
 	 */
-	public static function getFastNoise3D(Noise $noise, int $xSize, int $ySize, int $zSize, int $xSamplingRate, int $ySamplingRate, int $zSamplingRate, int $x, int $y, int $z) : array{
+	public static function getFastNoise3D(Noise $noise, $xSize, $ySize, $zSize, $xSamplingRate, $ySamplingRate, $zSamplingRate, $x, $y, $z){
 
 		assert($xSamplingRate !== 0, new \InvalidArgumentException("xSamplingRate cannot be 0"));
 		assert($zSamplingRate !== 0, new \InvalidArgumentException("zSamplingRate cannot be 0"));
@@ -232,13 +239,13 @@ abstract class Generator{
 
 	abstract public function init(ChunkManager $level, Random $random);
 
-	abstract public function generateChunk(int $chunkX, int $chunkZ);
+	abstract public function generateChunk($chunkX, $chunkZ);
 
-	abstract public function populateChunk(int $chunkX, int $chunkZ);
+	abstract public function populateChunk($chunkX, $chunkZ);
 
-	abstract public function getSettings() : array;
+	abstract public function getSettings();
 
-	abstract public function getName() : string;
+	abstract public function getName();
 
-	abstract public function getSpawn() : Vector3;
+	abstract public function getSpawn();
 }

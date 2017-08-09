@@ -64,7 +64,7 @@ class Utils{
 	 *
 	 * @return UUID
 	 */
-	public static function getMachineUniqueId(string $extra = "") : UUID{
+	public static function getMachineUniqueId($extra = ""){
 		if(self::$serverUniqueId !== null and $extra === ""){
 			return self::$serverUniqueId;
 		}
@@ -188,7 +188,7 @@ class Utils{
 	 *
 	 * @return string
 	 */
-	public static function getOS(bool $recalculate = false) : string{
+	public static function getOS($recalculate = false){
 		if(self::$os === null or $recalculate){
 			$uname = php_uname("s");
 			if(stripos($uname, "Darwin") !== false){
@@ -215,10 +215,8 @@ class Utils{
 		return self::$os;
 	}
 
-	/**
-	 * @return int[]
-	 */
-	public static function getRealMemoryUsage() : array{
+
+	public static function getRealMemoryUsage(){
 		$stack = 0;
 		$heap = 0;
 
@@ -286,11 +284,7 @@ class Utils{
 		return count(ThreadManager::getInstance()->getAll()) + 3; //RakLib + MainLogger + Main Thread
 	}
 
-	/**
-	 * @param bool $recalculate
-	 * @return int
-	 */
-	public static function getCoreCount(bool $recalculate = false) : int{
+	public static function getCoreCount($recalculate = false){
 		static $processors = 0;
 
 		if($processors > 0 and !$recalculate){
@@ -332,7 +326,7 @@ class Utils{
 	 *
 	 * @return string
 	 */
-	public static function hexdump(string $bin) : string{
+	public static function hexdump($bin){
 		$output = "";
 		$bin = str_split($bin, 16);
 		foreach($bin as $counter => $line){
@@ -348,11 +342,11 @@ class Utils{
 	/**
 	 * Returns a string that can be printed, replaces non-printable characters
 	 *
-	 * @param mixed $str
+	 * @param $str
 	 *
 	 * @return string
 	 */
-	public static function printable($str) : string{
+	public static function printable($str){
 		if(!is_string($str)){
 			return gettype($str);
 		}
@@ -487,7 +481,7 @@ class Utils{
 		}
 	}
 
-	public static function javaStringHash(string $string) : int{
+	public static function javaStringHash($string){
 		$hash = 0;
 		for($i = 0, $len = strlen($string); $i < $len; $i++){
 			$ord = ord($string{$i});

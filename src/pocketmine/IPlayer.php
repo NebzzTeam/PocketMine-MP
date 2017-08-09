@@ -30,7 +30,7 @@ interface IPlayer extends ServerOperator{
 	/**
 	 * @return bool
 	 */
-	public function isOnline() : bool;
+	public function isOnline();
 
 	/**
 	 * @return string
@@ -40,22 +40,22 @@ interface IPlayer extends ServerOperator{
 	/**
 	 * @return bool
 	 */
-	public function isBanned() : bool;
+	public function isBanned();
 
 	/**
 	 * @param bool $banned
 	 */
-	public function setBanned(bool $banned);
+	public function setBanned($banned);
 
 	/**
 	 * @return bool
 	 */
-	public function isWhitelisted() : bool;
+	public function isWhitelisted();
 
 	/**
 	 * @param bool $value
 	 */
-	public function setWhitelisted(bool $value);
+	public function setWhitelisted($value);
 
 	/**
 	 * @return Player|null
@@ -73,8 +73,8 @@ interface IPlayer extends ServerOperator{
 	public function getLastPlayed();
 
 	/**
-	 * @return bool
+	 * @return mixed
 	 */
-	public function hasPlayedBefore() : bool;
+	public function hasPlayedBefore();
 
 }

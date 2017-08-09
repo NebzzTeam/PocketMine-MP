@@ -109,7 +109,7 @@ class BaseLang{
 	 *
 	 * @return string
 	 */
-	public function translateString(string $str, array $params = [], string $onlyPrefix = null) : string{
+	public function translateString($str, array $params = [], $onlyPrefix = null){
 		$baseText = $this->get($str);
 		$baseText = $this->parseTranslation(($baseText !== null and ($onlyPrefix === null or strpos($str, $onlyPrefix) === 0)) ? $baseText : $str, $onlyPrefix);
 
@@ -165,13 +165,7 @@ class BaseLang{
 		return $id;
 	}
 
-	/**
-	 * @param string      $text
-	 * @param string|null $onlyPrefix
-	 *
-	 * @return string
-	 */
-	protected function parseTranslation(string $text, string $onlyPrefix = null) : string{
+	protected function parseTranslation($text, $onlyPrefix = null){
 		$newString = "";
 
 		$replaceString = null;

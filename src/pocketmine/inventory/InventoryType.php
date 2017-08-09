@@ -91,21 +91,21 @@ class InventoryType{
 	/**
 	 * @return int
 	 */
-	public function getDefaultSize() : int{
+	public function getDefaultSize(){
 		return $this->size;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getDefaultTitle() : string{
+	public function getDefaultTitle(){
 		return $this->title;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getNetworkType() : int{
+	public function getNetworkType(){
 		return $this->typeId;
 	}
 }

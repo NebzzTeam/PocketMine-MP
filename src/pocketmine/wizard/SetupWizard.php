@@ -45,7 +45,7 @@ class SetupWizard{
 
 	}
 
-	public function run() : bool{
+	public function run(){
 		$this->message("PocketMine-MP set-up wizard");
 
 		$langs = BaseLang::getLanguageList();
@@ -91,7 +91,7 @@ class SetupWizard{
 		return true;
 	}
 
-	private function showLicense() : bool{
+	private function showLicense(){
 		$this->message($this->lang->get("welcome_to_pocketmine"));
 		echo <<<LICENSE
 
@@ -244,7 +244,7 @@ LICENSE;
 		$this->writeLine("[!] " . $message);
 	}
 
-	private function getInput(string $message, string $default = "", string $options = "") : string{
+	private function getInput(string $message, string $default = "", string $options = ""){
 		$message = "[?] " . $message;
 
 		if($options !== "" or $default !== ""){

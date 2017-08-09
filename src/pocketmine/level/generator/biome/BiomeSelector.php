@@ -80,7 +80,7 @@ class BiomeSelector{
 	 *
 	 * @return Biome
 	 */
-	public function pickBiome($x, $z) : Biome{
+	public function pickBiome($x, $z){
 		$temperature = (int) ($this->getTemperature($x, $z) * 63);
 		$rainfall = (int) ($this->getRainfall($x, $z) * 63);
 

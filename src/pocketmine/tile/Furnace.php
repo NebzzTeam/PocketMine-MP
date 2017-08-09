@@ -137,7 +137,7 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 	 *
 	 * @return Item
 	 */
-	public function getItem(int $index) : Item{
+	public function getItem($index) : Item{
 		$i = $this->getSlotIndex($index);
 		if($i < 0){
 			return Item::get(Item::AIR, 0, 0);
@@ -152,7 +152,7 @@ class Furnace extends Spawnable implements InventoryHolder, Container, Nameable{
 	 * @param int  $index
 	 * @param Item $item
 	 */
-	public function setItem(int $index, Item $item){
+	public function setItem($index, Item $item){
 		$i = $this->getSlotIndex($index);
 
 		$d = $item->nbtSerialize($index);

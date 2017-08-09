@@ -84,32 +84,32 @@ abstract class BaseInventory implements Inventory{
 		$this->slots = [];
 	}
 
-	public function getSize() : int{
+	public function getSize(){
 		return $this->size;
 	}
 
-	public function setSize(int $size){
-		$this->size = $size;
+	public function setSize($size){
+		$this->size = (int) $size;
 	}
 
-	public function getMaxStackSize() : int{
+	public function getMaxStackSize(){
 		return $this->maxStackSize;
 	}
 
-	public function getName() : string{
+	public function getName(){
 		return $this->name;
 	}
 
-	public function getTitle() : string{
+	public function getTitle(){
 		return $this->title;
 	}
 
-	public function getItem(int $index) : Item{
+	public function getItem($index){
 		assert($index >= 0, "Inventory slot should not be negative");
 		return isset($this->slots[$index]) ? clone $this->slots[$index] : Item::get(Item::AIR, 0, 0);
 	}
 
-	public function getContents() : array{
+	public function getContents(){
 		return $this->slots;
 	}
 
@@ -134,7 +134,7 @@ abstract class BaseInventory implements Inventory{
 		}
 	}
 
-	public function setItem(int $index, Item $item) : bool{
+	public function setItem($index, Item $item){
 		$item = clone $item;
 		if($index < 0 or $index >= $this->size){
 			return false;
@@ -159,7 +159,7 @@ abstract class BaseInventory implements Inventory{
 		return true;
 	}
 
-	public function contains(Item $item) : bool{
+	public function contains(Item $item){
 		$count = max(1, $item->getCount());
 		$checkDamage = !$item->hasAnyDamageValue();
 		$checkTags = $item->hasCompoundTag();
@@ -175,7 +175,7 @@ abstract class BaseInventory implements Inventory{
 		return false;
 	}
 
-	public function all(Item $item) : array{
+	public function all(Item $item){
 		$slots = [];
 		$checkDamage = !$item->hasAnyDamageValue();
 		$checkTags = $item->hasCompoundTag();
@@ -199,7 +199,7 @@ abstract class BaseInventory implements Inventory{
 		}
 	}
 
-	public function first(Item $item) : int{
+	public function first(Item $item){
 		$count = max(1, $item->getCount());
 		$checkDamage = !$item->hasAnyDamageValue();
 		$checkTags = $item->hasCompoundTag();
@@ -213,7 +213,7 @@ abstract class BaseInventory implements Inventory{
 		return -1;
 	}
 
-	public function firstEmpty() : int{
+	public function firstEmpty(){
 		for($i = 0; $i < $this->size; ++$i){
 			if($this->getItem($i)->getId() === Item::AIR){
 				return $i;
@@ -223,7 +223,7 @@ abstract class BaseInventory implements Inventory{
 		return -1;
 	}
 
-	public function canAddItem(Item $item) : bool{
+	public function canAddItem(Item $item){
 		$item = clone $item;
 		$checkDamage = !$item->hasAnyDamageValue();
 		$checkTags = $item->hasCompoundTag();
@@ -245,7 +245,7 @@ abstract class BaseInventory implements Inventory{
 		return false;
 	}
 
-	public function addItem(Item ...$slots) : array{
+	public function addItem(Item ...$slots){
 		/** @var Item[] $itemSlots */
 		/** @var Item[] $slots */
 		$itemSlots = [];
@@ -302,7 +302,7 @@ abstract class BaseInventory implements Inventory{
 		return $itemSlots;
 	}
 
-	public function removeItem(Item ...$slots) : array{
+	public function removeItem(Item ...$slots){
 		/** @var Item[] $itemSlots */
 		/** @var Item[] $slots */
 		$itemSlots = [];
@@ -338,7 +338,7 @@ abstract class BaseInventory implements Inventory{
 		return $itemSlots;
 	}
 
-	public function clear(int $index) : bool{
+	public function clear($index){
 		if(isset($this->slots[$index])){
 			$item = Item::get(Item::AIR, 0, 0);
 			$old = $this->slots[$index];
@@ -372,7 +372,7 @@ abstract class BaseInventory implements Inventory{
 	/**
 	 * @return Player[]
 	 */
-	public function getViewers() : array{
+	public function getViewers(){
 		return $this->viewers;
 	}
 
@@ -380,11 +380,11 @@ abstract class BaseInventory implements Inventory{
 		return $this->holder;
 	}
 
-	public function setMaxStackSize(int $size){
-		$this->maxStackSize = $size;
+	public function setMaxStackSize($size){
+		$this->maxStackSize = (int) $size;
 	}
 
-	public function open(Player $who) : bool{
+	public function open(Player $who){
 		$who->getServer()->getPluginManager()->callEvent($ev = new InventoryOpenEvent($this, $who));
 		if($ev->isCancelled()){
 			return false;
@@ -459,7 +459,7 @@ abstract class BaseInventory implements Inventory{
 		}
 	}
 
-	public function getType() : InventoryType{
+	public function getType(){
 		return $this->type;
 	}
 

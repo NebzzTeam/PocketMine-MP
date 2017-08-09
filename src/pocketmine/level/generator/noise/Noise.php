@@ -36,7 +36,7 @@ abstract class Noise{
 	protected $persistence;
 	protected $expansion;
 
-	public static function floor($x) : int{
+	public static function floor($x){
 		return $x >= 0 ? (int) $x : (int) ($x - 1);
 	}
 

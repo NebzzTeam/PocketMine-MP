@@ -110,7 +110,7 @@ class Config{
 	 *
 	 * @return bool
 	 */
-	public function load(string $file, int $type = Config::DETECT, array $default = []) : bool{
+	public function load(string $file, int $type = Config::DETECT, array $default = []){
 		$this->correct = true;
 		$this->file = $file;
 
@@ -171,7 +171,7 @@ class Config{
 	/**
 	 * @return bool
 	 */
-	public function check() : bool{
+	public function check(){
 		return $this->correct === true;
 	}
 
@@ -434,7 +434,7 @@ class Config{
 	 *
 	 * @return array
 	 */
-	public function getAll(bool $keys = false) : array{
+	public function getAll($keys = false){
 		return ($keys === true ? array_keys($this->config) : $this->config);
 	}
 
@@ -446,12 +446,12 @@ class Config{
 	}
 
 	/**
-	 * @param array $default
-	 * @param array &$data
+	 * @param $default
+	 * @param $data
 	 *
 	 * @return int
 	 */
-	private function fillDefaults(array $default, &$data) : int{
+	private function fillDefaults($default, &$data){
 		$changed = 0;
 		foreach($default as $k => $v){
 			if(is_array($v)){
@@ -484,7 +484,7 @@ class Config{
 	/**
 	 * @return string
 	 */
-	private function writeProperties() : string{
+	private function writeProperties(){
 		$content = "#Properties Config file\r\n#" . date("D M j H:i:s T Y") . "\r\n";
 		foreach($this->config as $k => $v){
 			if(is_bool($v) === true){

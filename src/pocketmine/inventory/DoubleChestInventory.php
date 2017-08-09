@@ -50,19 +50,19 @@ class DoubleChestInventory extends ChestInventory implements InventoryHolder{
 		return $this->left->getHolder();
 	}
 
-	public function getItem(int $index) : Item{
+	public function getItem($index){
 		return $index < $this->left->getSize() ? $this->left->getItem($index) : $this->right->getItem($index - $this->right->getSize());
 	}
 
-	public function setItem(int $index, Item $item) : bool{
+	public function setItem($index, Item $item){
 		return $index < $this->left->getSize() ? $this->left->setItem($index, $item) : $this->right->setItem($index - $this->right->getSize(), $item);
 	}
 
-	public function clear(int $index) : bool{
+	public function clear($index){
 		return $index < $this->left->getSize() ? $this->left->clear($index) : $this->right->clear($index - $this->right->getSize());
 	}
 
-	public function getContents() : array{
+	public function getContents(){
 		$contents = [];
 		for($i = 0; $i < $this->getSize(); ++$i){
 			$contents[$i] = $this->getItem($i);
@@ -129,14 +129,14 @@ class DoubleChestInventory extends ChestInventory implements InventoryHolder{
 	/**
 	 * @return ChestInventory
 	 */
-	public function getLeftSide() : ChestInventory{
+	public function getLeftSide(){
 		return $this->left;
 	}
 
 	/**
 	 * @return ChestInventory
 	 */
-	public function getRightSide() : ChestInventory{
+	public function getRightSide(){
 		return $this->right;
 	}
 }

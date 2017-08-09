@@ -100,7 +100,7 @@ abstract class Tile extends Position{
 	 *
 	 * @return bool
 	 */
-	public static function registerTile($className) : bool{
+	public static function registerTile($className){
 		$class = new \ReflectionClass($className);
 		if(is_a($className, Tile::class, true) and !$class->isAbstract()){
 			self::$knownTiles[$class->getShortName()] = $className;
@@ -115,7 +115,7 @@ abstract class Tile extends Position{
 	 * Returns the short save name
 	 * @return string
 	 */
-	public function getSaveId() : string{
+	public function getSaveId(){
 		return self::$shortNames[static::class];
 	}
 
@@ -165,14 +165,11 @@ abstract class Tile extends Position{
 	/**
 	 * @return Block
 	 */
-	public function getBlock() : Block{
+	public function getBlock(){
 		return $this->level->getBlock($this);
 	}
 
-	/**
-	 * @return bool
-	 */
-	public function onUpdate() : bool{
+	public function onUpdate(){
 		return false;
 	}
 

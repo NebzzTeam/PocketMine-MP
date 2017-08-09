@@ -50,7 +50,7 @@ interface Plugin extends CommandExecutor{
 	/**
 	 * @return bool
 	 */
-	public function isEnabled() : bool;
+	public function isEnabled();
 
 	/**
 	 * Called when the plugin is disabled
@@ -58,78 +58,61 @@ interface Plugin extends CommandExecutor{
 	 */
 	public function onDisable();
 
-	/**
-	 * @return bool
-	 */
-	public function isDisabled() : bool;
+	public function isDisabled();
 
 	/**
 	 * Gets the plugin's data folder to save files and configuration.
 	 * This directory name has a trailing slash.
-	 *
-	 * @return string
 	 */
-	public function getDataFolder() : string;
+	public function getDataFolder();
 
 	/**
 	 * @return PluginDescription
 	 */
-	public function getDescription() : PluginDescription;
+	public function getDescription();
 
 	/**
 	 * Gets an embedded resource in the plugin file.
 	 *
 	 * @param string $filename
-	 *
-	 * @return
 	 */
-	public function getResource(string $filename);
+	public function getResource($filename);
 
 	/**
 	 * Saves an embedded resource to its relative location in the data folder
 	 *
 	 * @param string $filename
-	 * @param bool $replace
-	 *
-	 * @return bool
+	 * @param bool   $replace
 	 */
-	public function saveResource(string $filename, bool $replace = false) : bool;
+	public function saveResource($filename, $replace = false);
 
 	/**
 	 * Returns all the resources packaged with the plugin
-	 *
-	 * @return string[]
 	 */
-	public function getResources() : array;
+	public function getResources();
 
 	/**
 	 * @return Config
 	 */
-	public function getConfig() : Config;
+	public function getConfig();
 
 	public function saveConfig();
 
-	/**
-	 * @return bool
-	 */
-	public function saveDefaultConfig() : bool;
+	public function saveDefaultConfig();
 
 	public function reloadConfig();
 
 	/**
 	 * @return Server
 	 */
-	public function getServer() : Server;
+	public function getServer();
 
-	/**
-	 * @return string
-	 */
-	public function getName() : string;
+	public function getName();
 
 	/**
 	 * @return PluginLogger
 	 */
-	public function getLogger() : PluginLogger;
+	public function getLogger();
 
 	/**
 	 * @return PluginLoader

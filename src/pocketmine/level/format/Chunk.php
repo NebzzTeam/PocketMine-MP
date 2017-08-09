@@ -28,6 +28,7 @@ namespace pocketmine\level\format;
 
 use pocketmine\block\Block;
 use pocketmine\entity\Entity;
+use pocketmine\level\format\ChunkException;
 use pocketmine\level\Level;
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\tag\CompoundTag;
@@ -988,7 +989,7 @@ class Chunk{
 	 *
 	 * @return Chunk
 	 */
-	public static function fastDeserialize(string $data) : Chunk{
+	public static function fastDeserialize(string $data){
 		$stream = new BinaryStream();
 		$stream->setBuffer($data);
 		$data = null;

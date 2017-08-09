@@ -70,7 +70,7 @@ class ShapelessRecipe implements Recipe{
 	 *
 	 * @throws \InvalidArgumentException
 	 */
-	public function addIngredient(Item $item) : ShapelessRecipe{
+	public function addIngredient(Item $item){
 		if(count($this->ingredients) >= 9){
 			throw new \InvalidArgumentException("Shapeless recipes cannot have more than 9 ingredients");
 		}

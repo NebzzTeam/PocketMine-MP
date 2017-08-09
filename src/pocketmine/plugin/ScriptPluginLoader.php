@@ -49,8 +49,10 @@ class ScriptPluginLoader implements PluginLoader{
 	 * @param string $file
 	 *
 	 * @return Plugin|null
+	 *
+	 * @throws \Exception
 	 */
-	public function loadPlugin(string $file){
+	public function loadPlugin($file){
 		if(($description = $this->getPluginDescription($file)) instanceof PluginDescription){
 			$this->server->getLogger()->info($this->server->getLanguage()->translateString("pocketmine.plugin.load", [$description->getFullName()]));
 			$dataFolder = dirname($file) . DIRECTORY_SEPARATOR . $description->getName();
@@ -80,9 +82,9 @@ class ScriptPluginLoader implements PluginLoader{
 	 *
 	 * @param string $file
 	 *
-	 * @return null|PluginDescription
+	 * @return PluginDescription|null
 	 */
-	public function getPluginDescription(string $file){
+	public function getPluginDescription($file){
 		$content = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
 
 		$data = [];
@@ -120,7 +122,7 @@ class ScriptPluginLoader implements PluginLoader{
 	 *
 	 * @return string
 	 */
-	public function getPluginFilters() : string{
+	public function getPluginFilters(){
 		return "/\\.php$/i";
 	}
 

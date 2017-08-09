@@ -26,32 +26,26 @@ namespace pocketmine\permission;
 use pocketmine\utils\MainLogger;
 
 class BanEntry{
-	/**
-	 * @var string
-	 */
 	public static $format = "Y-m-d H:i:s O";
 
-	/** @var string */
 	private $name;
 	/** @var \DateTime */
 	private $creationDate = null;
-	/** @var string */
 	private $source = "(Unknown)";
-	/** @var \DateTime|null */
+	/** @var \DateTime */
 	private $expirationDate = null;
-	/** @var string */
 	private $reason = "Banned by an operator.";
 
-	public function __construct(string $name){
+	public function __construct($name){
 		$this->name = strtolower($name);
 		$this->creationDate = new \DateTime();
 	}
 
-	public function getName() : string{
+	public function getName(){
 		return $this->name;
 	}
 
-	public function getCreated() : \DateTime{
+	public function getCreated(){
 		return $this->creationDate;
 	}
 
@@ -59,43 +53,40 @@ class BanEntry{
 		$this->creationDate = $date;
 	}
 
-	public function getSource() : string{
+	public function getSource(){
 		return $this->source;
 	}
 
-	public function setSource(string $source){
+	public function setSource($source){
 		$this->source = $source;
 	}
 
-	/**
-	 * @return \DateTime|null
-	 */
 	public function getExpires(){
 		return $this->expirationDate;
 	}
 
 	/**
-	 * @param \DateTime|null $date
+	 * @param \DateTime $date
 	 */
-	public function setExpires(\DateTime $date = null){
+	public function setExpires($date){
 		$this->expirationDate = $date;
 	}
 
-	public function hasExpired() : bool{
+	public function hasExpired(){
 		$now = new \DateTime();
 
 		return $this->expirationDate === null ? false : $this->expirationDate < $now;
 	}
 
-	public function getReason() : string{
+	public function getReason(){
 		return $this->reason;
 	}
 
-	public function setReason(string $reason){
+	public function setReason($reason){
 		$this->reason = $reason;
 	}
 
-	public function getString() : string{
+	public function getString(){
 		$str = "";
 		$str .= $this->getName();
 		$str .= "|";

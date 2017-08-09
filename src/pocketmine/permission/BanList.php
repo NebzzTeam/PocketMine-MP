@@ -40,28 +40,28 @@ class BanList{
 	/**
 	 * @param string $file
 	 */
-	public function __construct(string $file){
+	public function __construct($file){
 		$this->file = $file;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function isEnabled() : bool{
+	public function isEnabled(){
 		return $this->enabled === true;
 	}
 
 	/**
 	 * @param bool $flag
 	 */
-	public function setEnabled(bool $flag){
-		$this->enabled = $flag;
+	public function setEnabled($flag){
+		$this->enabled = (bool) $flag;
 	}
 
 	/**
 	 * @return BanEntry[]
 	 */
-	public function getEntries() : array{
+	public function getEntries(){
 		$this->removeExpired();
 
 		return $this->list;
@@ -72,7 +72,7 @@ class BanList{
 	 *
 	 * @return bool
 	 */
-	public function isBanned(string $name) : bool{
+	public function isBanned($name){
 		$name = strtolower($name);
 		if(!$this->isEnabled()){
 			return false;
@@ -99,7 +99,7 @@ class BanList{
 	 *
 	 * @return BanEntry
 	 */
-	public function addBan(string $target, string $reason = null, \DateTime $expires = null, string $source = null) : BanEntry{
+	public function addBan($target, $reason = null, $expires = null, $source = null){
 		$entry = new BanEntry($target);
 		$entry->setSource($source != null ? $source : $entry->getSource());
 		$entry->setExpires($expires);
@@ -114,7 +114,7 @@ class BanList{
 	/**
 	 * @param string $name
 	 */
-	public function remove(string $name){
+	public function remove($name){
 		$name = strtolower($name);
 		if(isset($this->list[$name])){
 			unset($this->list[$name]);
@@ -148,10 +148,7 @@ class BanList{
 		}
 	}
 
-	/**
-	 * @param bool $flag
-	 */
-	public function save(bool $flag = true){
+	public function save($flag = true){
 		$this->removeExpired();
 		$fp = @fopen($this->file, "w");
 		if(is_resource($fp)){

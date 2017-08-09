@@ -92,15 +92,15 @@ class Normal extends Generator{
 		}
 	}
 
-	public function getName() : string{
+	public function getName(){
 		return "normal";
 	}
 
-	public function getSettings() : array{
+	public function getSettings(){
 		return [];
 	}
 
-	public function pickBiome(int $x, int $z){
+	public function pickBiome($x, $z){
 		$hash = $x * 2345803 ^ $z * 9236449 ^ $this->level->getSeed();
 		$hash *= $hash + 223;
 		$xNoise = $hash >> 20 & 3;
@@ -191,7 +191,7 @@ class Normal extends Generator{
 		$this->populators[] = $ores;
 	}
 
-	public function generateChunk(int $chunkX, int $chunkZ){
+	public function generateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 
 		$noise = Generator::getFastNoise3D($this->noiseBase, 16, 128, 16, 4, 8, 4, $chunkX * 16, 0, $chunkZ * 16);
@@ -258,7 +258,7 @@ class Normal extends Generator{
 		}
 	}
 
-	public function populateChunk(int $chunkX, int $chunkZ){
+	public function populateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 		foreach($this->populators as $populator){
 			$populator->populate($this->level, $chunkX, $chunkZ, $this->random);
@@ -269,7 +269,7 @@ class Normal extends Generator{
 		$biome->populateChunk($this->level, $chunkX, $chunkZ, $this->random);
 	}
 
-	public function getSpawn() : Vector3{
+	public function getSpawn(){
 		return new Vector3(127.5, 128, 127.5);
 	}
 

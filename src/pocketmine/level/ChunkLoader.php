@@ -45,14 +45,14 @@ interface ChunkLoader{
 	 *
 	 * @return int
 	 */
-	public function getLoaderId() : int;
+	public function getLoaderId();
 
 	/**
 	 * Returns if the chunk loader is currently active
 	 *
 	 * @return bool
 	 */
-	public function isLoaderActive() : bool;
+	public function isLoaderActive();
 
 	/**
 	 * @return Position

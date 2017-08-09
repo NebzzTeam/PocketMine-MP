@@ -422,7 +422,7 @@ class McRegion extends BaseLevelProvider{
 	 *
 	 * @return Chunk
 	 */
-	public function getEmptyChunk(int $chunkX, int $chunkZ) : Chunk{
+	public function getEmptyChunk(int $chunkX, int $chunkZ){
 		return Chunk::getEmptyChunk($chunkX, $chunkZ);
 	}
 

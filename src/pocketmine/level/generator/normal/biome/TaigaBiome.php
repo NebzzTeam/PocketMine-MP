@@ -47,7 +47,7 @@ class TaigaBiome extends SnowyBiome{
 		$this->rainfall = 0.8;
 	}
 
-	public function getName() : string{
+	public function getName(){
 		return "Taiga";
 	}
 }

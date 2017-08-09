@@ -63,7 +63,7 @@ class PermissibleBase implements Permissible{
 	/**
 	 * @return bool
 	 */
-	public function isOp() : bool{
+	public function isOp(){
 		if($this->opable === null){
 			return false;
 		}else{
@@ -76,7 +76,7 @@ class PermissibleBase implements Permissible{
 	 *
 	 * @throws \Exception
 	 */
-	public function setOp(bool $value){
+	public function setOp($value){
 		if($this->opable === null){
 			throw new \LogicException("Cannot change op value as no ServerOperator is set");
 		}else{
@@ -89,7 +89,7 @@ class PermissibleBase implements Permissible{
 	 *
 	 * @return bool
 	 */
-	public function isPermissionSet($name) : bool{
+	public function isPermissionSet($name){
 		return isset($this->permissions[$name instanceof Permission ? $name->getName() : $name]);
 	}
 
@@ -98,7 +98,7 @@ class PermissibleBase implements Permissible{
 	 *
 	 * @return bool
 	 */
-	public function hasPermission($name) : bool{
+	public function hasPermission($name){
 		if($name instanceof Permission){
 			$name = $name->getName();
 		}
@@ -212,7 +212,7 @@ class PermissibleBase implements Permissible{
 	/**
 	 * @return PermissionAttachmentInfo[]
 	 */
-	public function getEffectivePermissions() : array{
+	public function getEffectivePermissions(){
 		return $this->permissions;
 	}
 }

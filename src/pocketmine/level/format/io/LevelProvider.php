@@ -174,7 +174,7 @@ interface LevelProvider{
 	/**
 	 * @return string
 	 */
-	public function getName() : string;
+	public function getName();
 
 	/**
 	 * @return int|string int, or the string numeric representation of a long in 32-bit systems
@@ -216,7 +216,7 @@ interface LevelProvider{
 	/**
 	 * @return Level
 	 */
-	public function getLevel() : Level;
+	public function getLevel();
 
 	public function close();
 

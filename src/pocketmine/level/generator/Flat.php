@@ -50,11 +50,11 @@ class Flat extends Generator{
 	private $populators = [];
 	private $structure, $chunks, $options, $floorLevel, $preset;
 
-	public function getSettings() : array{
+	public function getSettings(){
 		return $this->options;
 	}
 
-	public function getName() : string{
+	public function getName(){
 		return "flat";
 	}
 
@@ -166,7 +166,7 @@ class Flat extends Generator{
 		*/
 	}
 
-	public function generateChunk(int $chunkX, int $chunkZ){
+	public function generateChunk($chunkX, $chunkZ){
 		if($this->chunk === null){
 			if(isset($this->options["preset"]) and $this->options["preset"] != ""){
 				$this->parsePreset($this->options["preset"], $chunkX, $chunkZ);
@@ -180,7 +180,7 @@ class Flat extends Generator{
 		$this->level->setChunk($chunkX, $chunkZ, $chunk);
 	}
 
-	public function populateChunk(int $chunkX, int $chunkZ){
+	public function populateChunk($chunkX, $chunkZ){
 		$this->random->setSeed(0xdeadbeef ^ ($chunkX << 8) ^ $chunkZ ^ $this->level->getSeed());
 		foreach($this->populators as $populator){
 			$populator->populate($this->level, $chunkX, $chunkZ, $this->random);
@@ -188,7 +188,7 @@ class Flat extends Generator{
 
 	}
 
-	public function getSpawn() : Vector3{
+	public function getSpawn(){
 		return new Vector3(128, $this->floorLevel, 128);
 	}
 }
