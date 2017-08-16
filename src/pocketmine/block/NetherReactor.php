@@ -26,53 +26,39 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Slab extends WoodenSlab{
-	const STONE = 0;
-	const SANDSTONE = 1;
-	const WOODEN = 2;
-	const COBBLESTONE = 3;
-	const BRICK = 4;
-	const STONE_BRICK = 5;
-	const QUARTZ = 6;
-	const NETHER_BRICK = 7;
-
-	protected $id = self::STONE_SLAB;
-
-	protected $doubleId = self::DOUBLE_STONE_SLAB;
+class NetherReactor extends Solid{
+	protected $id = Block::NETHER_REACTOR;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
-	public function getHardness(){
-		return 2;
-	}
-
 	public function getName(){
-		static $names = [
-			self::STONE => "Stone",
-			self::SANDSTONE => "Sandstone",
-			self::WOODEN => "Wooden",
-			self::COBBLESTONE => "Cobblestone",
-			self::BRICK => "Brick",
-			self::STONE_BRICK => "Stone Brick",
-			self::QUARTZ => "Quartz",
-			self::NETHER_BRICK => "Nether Brick",
+		static $prefixes = [
+			"",
+			"Active ",
+			"Used "
 		];
-		return (($this->meta & 0x08) > 0 ? "Upper " : "") . $names[$this->meta & 0x07] . " Slab";
+		return ($prefixes[$this->meta] ?? "") . "Nether Reactor Core";
 	}
 
 	public function getToolType(){
 		return Tool::TYPE_PICKAXE;
 	}
 
+	public function getHardness(){
+		return 3;
+	}
+
 	public function getDrops(Item $item){
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){
 			return [
-				[$this->id, $this->meta & 0x07, 1],
+				[Item::IRON_INGOT, 0, 6],
+				[Item::DIAMOND, 0, 3]
 			];
-		}else{
-			return [];
 		}
+
+		return [];
 	}
+
 }

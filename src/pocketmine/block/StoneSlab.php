@@ -26,29 +26,40 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class Sandstone extends Solid{
+class StoneSlab extends WoodenSlab{
+	const STONE = 0;
+	const SANDSTONE = 1;
+	const WOODEN = 2;
+	const COBBLESTONE = 3;
+	const BRICK = 4;
+	const STONE_BRICK = 5;
+	const QUARTZ = 6;
+	const NETHER_BRICK = 7;
 
-	const NORMAL = 0;
-	const CHISELED = 1;
-	const SMOOTH = 2;
+	protected $id = self::STONE_SLAB;
 
-	protected $id = self::SANDSTONE;
+	protected $doubleId = self::DOUBLE_STONE_SLAB;
 
 	public function __construct($meta = 0){
 		$this->meta = $meta;
 	}
 
 	public function getHardness(){
-		return 0.8;
+		return 2;
 	}
 
 	public function getName(){
 		static $names = [
-			self::NORMAL => "Sandstone",
-			self::CHISELED => "Chiseled Sandstone",
-			self::SMOOTH => "Smooth Sandstone"
+			self::STONE => "Stone",
+			self::SANDSTONE => "Sandstone",
+			self::WOODEN => "Wooden",
+			self::COBBLESTONE => "Cobblestone",
+			self::BRICK => "Brick",
+			self::STONE_BRICK => "Stone Brick",
+			self::QUARTZ => "Quartz",
+			self::NETHER_BRICK => "Nether Brick",
 		];
-		return $names[$this->meta & 0x03] ?? "Unknown";
+		return (($this->meta & 0x08) > 0 ? "Upper " : "") . $names[$this->meta & 0x07] . " Slab";
 	}
 
 	public function getToolType(){
@@ -58,11 +69,10 @@ class Sandstone extends Solid{
 	public function getDrops(Item $item){
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){
 			return [
-				[Item::SANDSTONE, $this->meta & 0x03, 1],
+				[$this->id, $this->meta & 0x07, 1],
 			];
 		}else{
 			return [];
 		}
 	}
-
 }

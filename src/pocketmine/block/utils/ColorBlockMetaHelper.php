@@ -21,11 +21,30 @@
 
 declare(strict_types=1);
 
-namespace pocketmine\entity;
+namespace pocketmine\block\utils;
 
-abstract class WaterAnimal extends Creature implements Ageable{
+class ColorBlockMetaHelper{
 
-	public function isBaby() : bool{
-		return $this->getDataFlag(self::DATA_FLAGS, self::DATA_FLAG_BABY);
+	public static function getColorFromMeta(int $meta) : string{
+		static $names = [
+			0 => "White",
+			1 => "Orange",
+			2 => "Magenta",
+			3 => "Light Blue",
+			4 => "Yellow",
+			5 => "Lime",
+			6 => "Pink",
+			7 => "Gray",
+			8 => "Light Gray",
+			9 => "Cyan",
+			10 => "Purple",
+			11 => "Blue",
+			12 => "Brown",
+			13 => "Green",
+			14 => "Red",
+			15 => "Black",
+		];
+
+		return $names[$meta] ?? "Unknown";
 	}
 }
