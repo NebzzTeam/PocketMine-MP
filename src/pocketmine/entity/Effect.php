@@ -65,13 +65,13 @@ class Effect{
 		$config = new Config(\pocketmine\PATH . "src/pocketmine/resources/effects.json", Config::JSON, []);
 
 		foreach($config->getAll() as $name => $data){
-			$color = hexdec($data["color"]);
+			$color = hexdec(substr($data["color"], 3));
 			$r = ($color >> 16) & 0xff;
 			$g = ($color >> 8) & 0xff;
 			$b = $color & 0xff;
 			self::registerEffect($name, new Effect(
 				$data["id"],
-				"%" . $data["name"],
+				"%potion." . $data["name"],
 				$r,
 				$g,
 				$b,
@@ -387,10 +387,8 @@ class Effect{
 	 * @param int $r
 	 * @param int $g
 	 * @param int $b
-	 *
-	 * @return int
 	 */
-	public function setColor(int $r, int $g, int $b)  {
+	public function setColor(int $r, int $g, int $b){
 		$this->color = (($r & 0xff) << 16) + (($g & 0xff) << 8) + ($b & 0xff);
 	}
 
@@ -424,7 +422,7 @@ class Effect{
 
 		switch($this->id){
 			case Effect::INVISIBILITY:
-				$entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, true);
+				$entity->setGenericFlag(Entity::DATA_FLAG_INVISIBLE, true);
 				$entity->setNameTagVisible(false);
 				break;
 			case Effect::SPEED:
@@ -489,7 +487,7 @@ class Effect{
 
 		switch($this->id){
 			case Effect::INVISIBILITY:
-				$entity->setDataFlag(Entity::DATA_FLAGS, Entity::DATA_FLAG_INVISIBLE, false);
+				$entity->setGenericFlag(Entity::DATA_FLAG_INVISIBLE, false);
 				$entity->setNameTagVisible(true);
 				break;
 			case Effect::SPEED:
