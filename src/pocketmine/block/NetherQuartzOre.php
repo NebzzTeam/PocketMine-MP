@@ -26,39 +26,31 @@ namespace pocketmine\block;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class StoneBricks extends Solid{
-	const NORMAL = 0;
-	const MOSSY = 1;
-	const CRACKED = 2;
-	const CHISELED = 3;
+class NetherQuartzOre extends Solid{
 
-	protected $id = self::STONE_BRICKS;
+	protected $id = Block::NETHER_QUARTZ_ORE;
 
 	public function __construct(int $meta = 0){
 		$this->meta = $meta;
 	}
 
+	public function getName() : string{
+		return "Nether Quartz Ore";
+	}
+
 	public function getHardness() : float{
-		return 1.5;
+		return 3;
 	}
 
 	public function getToolType() : int{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getName() : string{
-		static $names = [
-			self::NORMAL => "Stone Bricks",
-			self::MOSSY => "Mossy Stone Bricks",
-			self::CRACKED => "Cracked Stone Bricks",
-			self::CHISELED => "Chiseled Stone Bricks",
-		];
-		return $names[$this->meta & 0x03];
-	}
-
 	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){
-			return parent::getDrops($item);
+			return [
+				Item::get(Item::QUARTZ, 0, 1)
+			];
 		}
 
 		return [];

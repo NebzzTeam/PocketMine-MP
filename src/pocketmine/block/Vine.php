@@ -174,14 +174,16 @@ class Vine extends Transparent{
 		return false;
 	}
 
-	public function getDrops(Item $item){
+	public function getVariantBitmask() : int{
+		return 0;
+	}
+
+	public function getDrops(Item $item) : array{
 		if($item->isShears()){
-			return [
-				[$this->id, 0, 1],
-			];
-		}else{
-			return [];
+			return parent::getDrops($item);
 		}
+
+		return [];
 	}
 
 	public function getToolType() : int{

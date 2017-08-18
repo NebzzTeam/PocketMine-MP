@@ -118,12 +118,15 @@ class BurningFurnace extends Solid{
 		return true;
 	}
 
-	public function getDrops(Item $item){
-		$drops = [];
+	public function getVariantBitmask() : int{
+		return 0;
+	}
+
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){
-			$drops[] = [Item::FURNACE, 0, 1];
+			return parent::getDrops($item);
 		}
 
-		return $drops;
+		return [];
 	}
 }

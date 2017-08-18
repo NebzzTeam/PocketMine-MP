@@ -35,6 +35,8 @@ use pocketmine\tile\Tile;
 class ItemFrame extends Flowable{
 	protected $id = Block::ITEM_FRAME_BLOCK;
 
+	protected $itemId = Item::ITEM_FRAME;
+
 	public function __construct(int $meta = 0){
 		$this->meta = $meta;
 	}
@@ -137,10 +139,7 @@ class ItemFrame extends Flowable{
 
 	}
 
-	public function getDrops(Item $item){
-		return [
-			[Item::ITEM_FRAME, 0, 1]
-		];
+	public function getVariantBitmask() : int{
+		return 0;
 	}
-
 }

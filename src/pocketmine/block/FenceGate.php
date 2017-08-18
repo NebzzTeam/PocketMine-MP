@@ -75,10 +75,8 @@ class FenceGate extends Transparent{
 		return true;
 	}
 
-	public function getDrops(Item $item){
-		return [
-			[$this->id, 0, 1],
-		];
+	public function getVariantBitmask() : int{
+		return 0;
 	}
 
 	public function onActivate(Item $item, Player $player = null) : bool{

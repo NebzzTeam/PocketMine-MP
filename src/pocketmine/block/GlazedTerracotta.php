@@ -52,13 +52,15 @@ class GlazedTerracotta extends Solid{
 		return $this->getLevel()->setBlock($block, $this, true, true);
 	}
 
-	public function getDrops(Item $item){
+	public function getVariantBitmask() : int{
+		return 0;
+	}
+
+	public function getDrops(Item $item) : array{
 		if($item->isPickaxe() >= Tool::TIER_WOODEN){
-			return [
-				[$this->getId(), 0, 1],
-			];
-		}else{
-			return [];
+			return parent::getDrops($item);
 		}
+
+		return [];
 	}
 }

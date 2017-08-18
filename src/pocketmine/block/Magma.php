@@ -23,37 +23,45 @@ declare(strict_types=1);
 
 namespace pocketmine\block;
 
+use pocketmine\entity\Entity;
+use pocketmine\event\entity\EntityDamageByBlockEvent;
+use pocketmine\event\entity\EntityDamageEvent;
 use pocketmine\item\Item;
 use pocketmine\item\Tool;
 
-class StoneBricks extends Solid{
-	const NORMAL = 0;
-	const MOSSY = 1;
-	const CRACKED = 2;
-	const CHISELED = 3;
+class Magma extends Solid{
 
-	protected $id = self::STONE_BRICKS;
+	protected $id = Block::MAGMA;
 
 	public function __construct(int $meta = 0){
 		$this->meta = $meta;
 	}
 
+	public function getName() : string{
+		return "Magma Block";
+	}
+
 	public function getHardness() : float{
-		return 1.5;
+		return 0.5;
 	}
 
 	public function getToolType() : int{
 		return Tool::TYPE_PICKAXE;
 	}
 
-	public function getName() : string{
-		static $names = [
-			self::NORMAL => "Stone Bricks",
-			self::MOSSY => "Mossy Stone Bricks",
-			self::CRACKED => "Cracked Stone Bricks",
-			self::CHISELED => "Chiseled Stone Bricks",
-		];
-		return $names[$this->meta & 0x03];
+	public function getLightLevel() : int{
+		return 3;
+	}
+
+	public function hasEntityCollision() : bool{
+		return true;
+	}
+
+	public function onEntityCollide(Entity $entity){
+		if(!$entity->isSneaking()){
+			$ev = new EntityDamageByBlockEvent($this, $entity, EntityDamageEvent::CAUSE_FIRE, 1);
+			$entity->attack($ev->getFinalDamage(), $ev);
+		}
 	}
 
 	public function getDrops(Item $item) : array{

@@ -35,10 +35,4 @@ class WoodenDoor extends Door{
 	public function getToolType() : int{
 		return Tool::TYPE_AXE;
 	}
-
-	public function getDrops(Item $item){
-		return [
-			[$this->getItemId(), 0, 1],
-		];
-	}
 }

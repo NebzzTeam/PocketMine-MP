@@ -129,10 +129,8 @@ class WoodenSlab extends Transparent{
 		return Tool::TYPE_AXE;
 	}
 
-	public function getDrops(Item $item){
-		return [
-			[$this->id, $this->meta & 0x07, 1],
-		];
+	public function getVariantBitmask() : int{
+		return 0x07;
 	}
 
 	public function getFuelTime() : int{
